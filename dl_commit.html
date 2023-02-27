@@ -3,7 +3,7 @@
        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Discrete Logarithm Based Polynomial Commitments Page</title>
+    <title>Discrete Logarithm and Pairing Based Polynomial Commitments</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -36,7 +36,7 @@
 </head>
 
 <body>
-       <h1>Discrete-Logarithm Based Polynomial Commitments</h1>
+       <h1>Discrete Logarithm and Pairing Based Polynomial Commitments</h1>
        <h2>Background</h2>
        <h3>1. The Discrete Logarithm Assumption</h3>
        <p> Given a multiplicative group of order $p$, $Z_p^{*}$ for a prime $p$, and a
@@ -102,4 +102,37 @@
        <h4> Check for correctness of algorithm </h4>
        <p> Using the definition of $e$, it is clearly seen that:</p>
        $$e(\sigma, g) = e(H(m)^x, g^1) = e(H(m), g)^{x\times 1} = e(H(m), g)^x$$
+
+    <h2> The KZG Polynomial Commitment Scheme </h2>
+    <h3> Recapitulation - Polynomial Commitment Scheme</h3>
+    A Polynomial Commitment Scheme consists of the following operations:
+    <ol>
+        <li> A primitive $KeyGen(\lambda, F) \rightarrow g_p$ for some security
+            parameter $\lambda$, $F$ being a family of polynomial functions. gp is
+            common to both, prover and verifier. </li>
+        <li> The prover chooses a polynomial $f(x) \in F$ and sends a commitment
+            $com_f$ of $f$ to the verifier. </li>
+        <li> The verifier sends a random $u$ to the prover. </li>
+        <li> The prover computes $eval(gp, f, u) = (v, \pi)$ sends the output $(v, \pi)$
+            to the verifier. Here $v = f(u) \text{ and } \pi$ is the proof that $f(u) = v$.
+        </li>
+        <li> Verifier checks that:
+            <dl>
+                <dt> - $f \in F$, and </dt>
+                <dt> - $f(u) = v$ </dt>
+            </dl>
+    </ol>
+    <h3> KZG Polynomial Commitment Scheme using Discrete Logarithms (Kate, Zaverucha, Goldberg, 2010) </h3>
+    <p> What is common to the prover and verifier are the following parameters:
+        $(p, G, g, G_T, e)$
+    </p>
+    <ol> 
+        <li> $p$ is a prime number </li>
+        <li> $G$ is a {\em base} group of order $p$ </li>
+        <li> $g$ is a generator, $g \in G$ </li>
+        <li> $G_T$ is a {\em target} group </li>
+        <li> $e$ is a $bilinear$ function, $e: G \times G \rightarrow G_T$ </li>
+    </ol>
+    <p> Also, the set of univariate polynomials $F = F_p^{\le d}[X]$ is common to both, prover and verifier. </p>
+    <h4> The $KeyGen$ Step </h4>
 </body>
