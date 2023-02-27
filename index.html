@@ -39,15 +39,31 @@
        <h1>Discrete-Logarithm Based Polynomial Commitments</h1>
        <h2>Background</h2>
        <h3>1. The Discrete Logarithm Assumption</h3>
-       <p>
-       Given a multiplicative group of order $p$, $Z_p^{*}$ for a prime $p$, and a
-       generator $g \in Z_p^{*}$, if for some $x$ where $1 \lt x \lt p-1$, we have
-       $y \equiv g^x \mod p$ then it is computationally infeasible to determine
-       $x$ from $p$.
+       <p> Given a multiplicative group of order $p$, $Z_p^{*}$ for a prime $p$, and a
+              generator $g \in Z_p^{*}$, if for some $x$ where $1 \lt x \lt p-1$, we have
+              $y \equiv g^x \mod p$ then it is computationally infeasible to determine
+              $x$ from $p$.
        </p>
        <h3>The Diffie-Hellman Assumption</h3>
-       <p> Let $Z_p^{\*}$ be a multiplicative group for some prime $p$. For a generator
-              $g \in Z_p^{\*}$ and integers $x,y$ where $1 < x,y < p-1$, if $g^x$ and
+       <p> Let $Z_p^{*}$ be a multiplicative group for some prime $p$. For a generator
+              $g \in Z_p^{*}$ and integers $x,y$ where $1 < x,y < p-1$, if $g^x$ and
               $g^y$ are given, it is computationally infeasible to obtain $g^{xy}$.
+       </p>
+       <h3>3. Bilinear Pairings</h3>
+       <p> Consider a group $G$ and a second group $G_T$. Let $P, Q \in G$. For integers
+              $x, y$ we define a *bilinear pairing* $e: G \times G \rightarrow G_T$ as
+              follows:
+              \begin{equation}
+              e(P^x,Q^y) = e(P,Q)^{xy}
+              \end{equation}
+       </p>
+       <p>$G$ is called the *base group* while $G_T$ is called the *target group*.</p>
+       <p> Given two elements of $G$, viz. $g^x, g^y$, it should be possible to check
+              for some element $h = g^{xy}$ without knowing $x$ and $y$.</p>
+       <p> How? Using the operator $e$, repeated application of the definition of $e$
+              yields the following:
+              $$e(g^x, g^y) = e(g, g)^{xy}$$
+              $$\text{and } e(g^{xy}, g) = e(g^{xy}, g^1) = e(g, g)^{(xy)(1)} = e(g, g)^{xy}$$
+              $$\therefore e(g^x, g^y) = e(g^{xy}, g)$$
        </p>
 </body>
