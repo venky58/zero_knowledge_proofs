@@ -144,7 +144,7 @@
     <h4> The $KeyGen$ Step </h4>
        <ol>
               <li> Generate a random $\tau$ </li>
-              <li> Compute $gp = (g, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d\)$ </li>
+              <li> Compute $gp = \lbrace g, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d \rbrace$ </li>
               <li> <u>Delete $\tau$</u>. (Hence this is a Trusted Setup) </li>
        </ol>
        <p> A prover that deletes its secret $\tau$ is called a <u>honest prover</u>. </p>
@@ -161,7 +161,7 @@
        </p>
        $$ com_f = g^{f(\tau)}$$
        $$= g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d}$$
-       $$= g^f_0 \cdot (g^\tau)^f_1 \cdot (g^\tau^2)^f_2 \cdot \cdots \cdot (g^\tau^d)^f_d$$
+       $$= g^f_0 \times (g^\tau)^f_1 \times (g^\tau^2)^f_2 \times \cdots \times (g^\tau^d)^f_d$$
        <p> Since the bracketed terms are already available in $gp$, $com_f$ is easily
               computed even after $\tau$ is deleted.
        </p>
