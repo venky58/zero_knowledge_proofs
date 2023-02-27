@@ -39,7 +39,7 @@
        <h1>Discrete-Logarithm Based Polynomial Commitments</h1>
        <h2>Background</h2>
        <h3>1. The Discrete Logarithm Assumption</h3>
-       <p> Given a multiplicative group of order $p$, $Z_p^{*}$ for a prime $p$, and a
+       <p> 2. Given a multiplicative group of order $p$, $Z_p^{*}$ for a prime $p$, and a
               generator $g \in Z_p^{*}$, if for some $x$ where $1 \lt x \lt p-1$, we have
               $y \equiv g^x \mod p$ then it is computationally infeasible to determine
               $x$ from $p$.
@@ -51,11 +51,12 @@
        </p>
        <h3>3. Bilinear Pairings</h3>
        <p> Consider a group $G$ and a second group $G_T$. Let $P, Q \in G$. For integers
-              $x, y$ we define a *bilinear pairing* $e: G \times G \rightarrow G_T$ as
-              follows:
+              $x, y$ we define a <b>bilinear pairing</b> $e: G \times G \rightarrow G_T$
+              as follows:
               $$e(P^x,Q^y) = e(P,Q)^{xy}$$
        </p>
-       <p>$G$ is called the *base group* while $G_T$ is called the *target group*.</p>
+       <p>$G$ is called the <b>base group</b> while $G_T$ is called the <b>target group</b>.
+       </p>
        <p> Given two elements of $G$, viz. $g^x, g^y$, it should be possible to check
               for some element $h = g^{xy}$ without knowing $x$ and $y$.</p>
        <p> How? Using the operator $e$, repeated application of the definition of $e$
