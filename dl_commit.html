@@ -133,10 +133,10 @@
     </p>
     <ol> 
         <li> $p$ is a prime number </li>
-        <li> $G$ is a {\em base} group of order $p$ </li>
+           <li> $G$ is a <i>base</i> group of order $p$ </li>
         <li> $g$ is a generator, $g \in G$ </li>
-        <li> $G_T$ is a {\em target} group </li>
-        <li> $e$ is a $bilinear$ function, $e: G \times G \rightarrow G_T$ </li>
+           <li> $G_T$ is a <i>target</i> group </li>
+           <li> $e$ is a <i>bilinear</i> operation. $e: G \times G \rightarrow G_T$ </li>
     </ol>
     <p> Also, the set of univariate polynomials $F = F_p^{\le d}[X]$ is common to both,
            prover and verifier. $d$ is the upper bound of the degree of the polynomials.
@@ -144,7 +144,7 @@
     <h4> The $KeyGen$ Step </h4>
        <ol>
               <li> Generate a random $\tau$ </li>
-              <li> Compute $gp = \{g, g^\tau, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d\}$ </li>
+              <li> Compute $gp = <g, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d\}$ </li>
               <li> <u>Delete $\tau$</u>. (Hence this is a Trusted Setup) </li>
        </ol>
        <p> A prover that deletes its secret $\tau$ is called a <u>honest prover</u>. </p>
@@ -159,9 +159,13 @@
        <p> But $\tau$ is already deleted! How can the prover compute $g_{f(\tau)}$?
               Like this:
        </p>
-       $$ com_f = g^{f(\tau)}
-             = g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d}
-             = g^f_0 + (g^\tau)^f_1 + (g^\tau^2)^f_2 + \cdots + (g^\tau^d)^f_d $$
+       \begin{equation}
+       \begin{split}
+       com_f &= g^{f(\tau)}
+             &= g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d}
+             &= g^f_0 + (g^\tau)^f_1 + (g^\tau^2)^f_2 + \cdots + (g^\tau^d)^f_d
+       \end{split}
+       \end{equation}
        <p> Since the bracketed terms are already available in $gp$, $com_f$ is easily
               computed even after $\tau$ is deleted.
        </p>
