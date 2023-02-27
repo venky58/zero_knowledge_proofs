@@ -107,20 +107,25 @@
     <h3> Recapitulation - Polynomial Commitment Scheme</h3>
     A Polynomial Commitment Scheme consists of the following operations:
     <ol>
-        <li> A primitive $KeyGen(\lambda, F) \rightarrow g_p$ for some security
-            parameter $\lambda$, $F$ being a family of polynomial functions. gp is
-            common to both, prover and verifier. </li>
-        <li> The prover chooses a polynomial $f(x) \in F$ and sends a commitment
-            $com_f$ of $f$ to the verifier. </li>
-        <li> The verifier sends a random $u$ to the prover. </li>
-        <li> The prover computes $eval(gp, f, u) = (v, \pi)$ sends the output $(v, \pi)$
-            to the verifier. Here $v = f(u) \text{ and } \pi$ is the proof that $f(u) = v$.
-        </li>
-        <li> Verifier checks that:
+           <li> A primitive $KeyGen(\lambda, F) \rightarrow gp$ for some security
+                  parameter $\lambda$, $F$ being a family of polynomial functions.
+                  The output $gp$ of this primitive is common to both, prover and
+                  verifier, and forms the {\em global parameters}.
+           </li>
+           <li> The prover chooses a polynomial $f(x) \in F$ and sends a commitment
+                  $com_f$ of $f$ to the verifier.
+           </li>
+           <li> The verifier sends a random $u$ to the prover. </li>
+           <li> The prover computes $eval(gp, f, u) = (v, \pi)$ sends the output
+                  $(v, \pi)$ to the verifier. Here $v = f(u) \text{ and } \pi$ is
+                  the proof that $f(u) = v$.
+           </li>
+           <li> The verifier checks that:
             <dl>
                 <dt> - $f \in F$, and </dt>
                 <dt> - $f(u) = v$ </dt>
             </dl>
+           </li>
     </ol>
     <h3> KZG Polynomial Commitment Scheme using Discrete Logarithms (Kate, Zaverucha, Goldberg, 2010) </h3>
     <p> What is common to the prover and verifier are the following parameters:
@@ -133,6 +138,32 @@
         <li> $G_T$ is a {\em target} group </li>
         <li> $e$ is a $bilinear$ function, $e: G \times G \rightarrow G_T$ </li>
     </ol>
-    <p> Also, the set of univariate polynomials $F = F_p^{\le d}[X]$ is common to both, prover and verifier. </p>
+    <p> Also, the set of univariate polynomials $F = F_p^{\le d}[X]$ is common to both,
+           prover and verifier. $d$ is the upper bound of the degree of the polynomials.
+    </p>
     <h4> The $KeyGen$ Step </h4>
+       <ol>
+              <li> Generate a random $\tau$ </li>
+              <li> Compute $gp = {g, g^\tau, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d}$ </li>
+              <li> <bf> Delete $\tau$ </bf> (Hence this is a Trusted Setup) </li>
+       </ol>
+       <p> A prover that deletes its secret $\tau$ is called a <ul> honest prover </ul>. </p>
+    <h4> The Commitment Step </h4>
+       <p> The commitment of a function $f(x) = f_0 + f_1x + f_2x^2 + \cdots + f_d(x^d)$
+              is defined as follows.
+       </p>
+       <ol>
+              <li> $commit(gp, f) \rightarrow com_f$ </li>
+              <li> $com_f = g^{f(\tau)}$
+       </ol>
+       <p> But $\tau$ is already deleted! How can the prover compute $g_{f(\tau)}$?
+              Like this:
+       </p>
+       \begin{eqnarray}
+       com_f &=& g^{f(\tau)} \nonumber \\
+             &=& g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d} \nonumber \\
+             &=& g^f_0 + (g^\tau)^f_1 + (g^\tau)^f_2 + \cdots + (g^\tau)^f_d \nonumber
+       <p> Since the bracketed terms are already available in $g_p$, $com_f$ is easily
+              computed even after $\tau$ is deleted.
+       </p>
 </body>
