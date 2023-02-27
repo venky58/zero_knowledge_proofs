@@ -144,8 +144,8 @@
     <h4> The $KeyGen$ Step </h4>
        <ol>
               <li> Generate a random $\tau$ </li>
-              <li> Compute $gp = {g, g^\tau, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d}$ </li>
-              <li> <bf> Delete $\tau$ </bf> (Hence this is a Trusted Setup) </li>
+              <li> Compute $gp = \{g, g^\tau, g^\tau, g^\tau^2, g^\tau^3,\cdots, g^\tau^d\}$ </li>
+              <li> {\em Delete $\tau$}. (Hence this is a Trusted Setup) </li>
        </ol>
        <p> A prover that deletes its secret $\tau$ is called a <ul> honest prover </ul>. </p>
     <h4> The Commitment Step </h4>
@@ -159,11 +159,10 @@
        <p> But $\tau$ is already deleted! How can the prover compute $g_{f(\tau)}$?
               Like this:
        </p>
-       \begin{eqnarray}
-       com_f &=& g^{f(\tau)} \nonumber \\
-             &=& g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d} \nonumber \\
-             &=& g^f_0 + (g^\tau)^f_1 + (g^\tau^2)^f_2 + \cdots + (g^\tau^d)^f_d \nonumber
-       <p> Since the bracketed terms are already available in $g_p$, $com_f$ is easily
+       $$ com_f &=& g^{f(\tau)}
+             &=& g^{f_0 + f_1\tau + f_2\tau^2 + \cdots + f_d\tau^d}
+             &=& g^f_0 + (g^\tau)^f_1 + (g^\tau^2)^f_2 + \cdots + (g^\tau^d)^f_d $$
+       <p> Since the bracketed terms are already available in $gp$, $com_f$ is easily
               computed even after $\tau$ is deleted.
        </p>
 </body>
