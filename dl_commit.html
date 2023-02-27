@@ -65,4 +65,37 @@
               $$\text{and } e(g^{xy}, g) = e(g^{xy}, g^1) = e(g, g)^{(xy)(1)} = e(g, g)^{xy}$$
               $$\therefore e(g^x, g^y) = e(g^{xy}, g)$$
        </p>
+       <h3>4. BLS Signature Scheme using Bilinear Pairings (Boneh, Lynn, Shacham, 2001)</h3>
+       <p>Given:</p>
+       - A base multiplicative group $G$ of prime order $p$ <br />
+       - A target group $G_T$ <br />
+       - A generator $g \in G$ <br />
+       - A bilinear pairing operator $e$ (used for signature verification only) <br />
+       - A message $m \in M$ to be signed, where $M$ is the message space, and <br />
+       - A hash function $H:M \rightarrow G$ <br />
+
+       <p> Three operations are involved.</p>
+       - Public-Private Key-pair Generation <br />
+       - Signature Generation <br />
+       - Signature Verification <br />
+       
+       <h4>Public-Private Key-pair Generation</h4>
+
+       <p>1. Choose an integer $x$ such that $1 < x < p-1$. This is the private key. <br /></p>
+       <p>2. Compute the public key: $y = g^x \mod p$ <br /></p>
+
+       <h4> Signature Generation, $\sigma$ </h4>
+       <p> Compute:</p>
+       <p> $$\sigma = H(M)^x$$ <br /></p>
+       <p> This signs the (hash of the) message $M$ using private key $x$.<br /></p>
+
+       <h4>Signature Verification</h4>
+       <p> Using the public key $g^x$, verify the signature on the (hash of the) message
+              $m$ by establishing that the following equality holds:</p>
+
+       $$e(H(m), g^x) = e(\sigma, g)$$
+
+       <h5> Check for correctness of algorithm </h5>
+       <p> Using the definition of $e$, it is clearly seen that:</p>
+       $$e(\sigma, g) = e(H(m)^x, g^1) = e(H(m), g)^{x\times 1} = e(H(m), g)^x$$
 </body>
